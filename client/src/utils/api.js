@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { toast } from "react-toastify";
 
 export const api = axios.create({
-  baseURL: "https://find-perfect.vercel.app/api",
+  baseURL: "http://localhost:8000/api",
 });
 
 export const getAllProperties = async () => {
@@ -54,19 +54,18 @@ export const createUser = async (email, token) => {
     throw error;
   }
 };
-
-export const bookVisit = async (date, propertyId, email, token) => {
+// Adjust the bookVisit function to remove headers and add the city parameter
+export const bookVisit = async (name, date, phone, city, propertyId) => {
   try {
     await api.post(
-      `/user/bookVisit/${propertyId}`,
+      `/bookVisit/bookVisit`,
       {
-        email,
-        id: propertyId,
-        date: dayjs(date).format("DD/MM/YYYY"),
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+        data: {
+          name,
+          date,
+          phone,
+          city,
+          propertyId,
         },
       }
     );

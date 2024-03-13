@@ -15,6 +15,37 @@ export const createUser = asyncHandler(async (req, res) => {
     });
    } else res.status(201).send({ message: "User already registered" });
 });
+
+
+export const loginUser = asyncHandler(async (req, res) => {
+  console.log("Logging in user");
+
+  const { emailOrPhone, password } = req.body;
+
+  // Check if the user exists with the provided email or phone
+  const user = await prisma.user.findFirst({
+    where: {
+      AND: [
+        {
+          OR: [
+            { email: emailOrPhone },
+            { phone: parseInt(emailOrPhone) || undefined },
+          ],
+        },
+        { password: password }, // Check if the password matches
+      ],
+    },
+  });
+
+  if (!user) {
+    res.status(404).send({ message: "User not found or invalid credentials" });
+    return;
+  }
+
+  // Login successful
+  res.send({ message: "Login successful", user: user });
+});
+
   
 // function to book a visit to resd
 export const bookVisit = asyncHandler(async (req, res) => {

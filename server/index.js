@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { userRoute } from './routes/userRoute.js';
 import { residencyRoute } from './routes/residencyRoute.js';
+import { bookVisitRoute } from './routes/bookVisitRoute.js';
 dotenv.config()
 
 const app = express();
@@ -20,3 +21,5 @@ app.listen(8000, ()=> {
 
 app.use('/api/user', userRoute)
 app.use("/api/residency", residencyRoute)
+app.use("/api/bookVisit", bookVisitRoute)
+

@@ -6,16 +6,27 @@ datasource db {
     provider = "mongodb"
     url      = env("DATABASE_URL")
 }
-
 model User {
-    id               String      @id @default(auto()) @map("_id") @db.ObjectId
-    name             String?
-    email            String      @unique
-    image            String?
-    bookedVisits     Json[]
-    favResidenciesID String[]    @db.ObjectId
-    ownedResidencies Residency[] @relation("Owner")
+  id               String      @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  email            String      @unique
+  phone            String      @unique
+  password         String      @unique
+
+  image            String?
+  bookedVisits     Json[]
+  favResidenciesID String[]    @db.ObjectId
 }
+
+model BookVisit {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  date     String
+  phone    String
+  city     String
+  propertyId String
+}
+
 
 model Residency {
     id          String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -24,13 +35,12 @@ model Residency {
     price       Int
     address     String
     city        String
+    type        String
     country     String
-    image       String
+    images      Json
     facilities  Json
-    userEmail   String
-    owner       User     @relation("Owner", fields: [userEmail], references: [email])
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
-    @@unique(fields: [address, userEmail])
+    @@unique(fields: [address])
 }
