@@ -12,9 +12,9 @@ const PropertyCard = ({card}) => {
     onClick={()=>navigate(`../properties/${card.id}`)}
     >
       <Heart id={card?.id}/>
-      <img src={card.image} alt="home" />
+      <img src={ card?.images[0]} alt="home" />
       <span className="secondaryText r-price">
-        <span style={{ color: "orange" }}>$</span>
+        <span style={{ color: "orange" }}>₹</span>
         <span>{card.price}</span>
       </span>
       <span className="primaryText">{truncate(card.title, {length: 15})}</span>

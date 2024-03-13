@@ -9,22 +9,25 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
       title: propertyDetails.title,
       description: propertyDetails.description,
       price: propertyDetails.price,
+      area:propertyDetails.area,
+
     },
     validate: {
       title: (value) => validateString(value),
       description: (value) => validateString(value),
-      price: (value) =>
-          value < 1000 ? "Must be greater than 999 dollars" : null,
+      price: (value) =>validateString(value),
+          
+      area: (value) => validateString(value),
     },
   });
 
-  const {title, description, price} = form.values
+  const {title, description, price,area} = form.values
 
 
   const handleSubmit = ()=> {
     const {hasErrors} = form.validate()
     if(!hasErrors) {
-     setPropertyDetails((prev)=> ({...prev, title, description, price}))
+     setPropertyDetails((prev)=> ({...prev, title, description, price,area}))
      nextStep()
     }
    }
@@ -52,6 +55,12 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
           placeholder="1000"
           min={0}
           {...form.getInputProps("price")}
+        />
+        <TextInput
+          withAsterisk
+          label="area"
+          placeholder="Area in sq.ft"
+          {...form.getInputProps("area")}
         />
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>

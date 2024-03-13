@@ -18,6 +18,7 @@ const Facilities = ({
     initialValues: {
       bedrooms: propertyDetails.facilities.bedrooms,
       parkings: propertyDetails.facilities.parkings,
+      area: propertyDetails.facilities.area,
       bathrooms: propertyDetails.facilities.bathrooms,
     },
     validate: {
@@ -61,13 +62,13 @@ const Facilities = ({
         country: "",
         city: "",
         address: "",
-        image: null,
+        image: [], 
+        area:"",
         facilities: {
           bedrooms: 0,
           parkings: 0,
           bathrooms: 0,
         },
-        userEmail: user?.email,
       })
       setOpened(false)
       setActiveStep(0)
@@ -100,6 +101,11 @@ const Facilities = ({
           label="No of Bathrooms"
           min={0}
           {...form.getInputProps("bathrooms")}
+        />
+         <NumberInput
+          label="Carpet Area"
+          // min={0}
+          {...form.getInputProps("area")}
         />
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>

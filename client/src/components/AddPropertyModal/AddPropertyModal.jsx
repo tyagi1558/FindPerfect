@@ -17,13 +17,13 @@ const AddPropertyModal = ({ opened, setOpened }) => {
     country: "",
     city: "",
     address: "",
-    image: null,
+    area:"",
+    image: [], 
     facilities: {
       bedrooms: 0,
       parkings: 0,
       bathrooms: 0,
     },
-    userEmail: user?.email,
   });
 
   const nextStep = () => {

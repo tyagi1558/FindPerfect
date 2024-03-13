@@ -8,6 +8,40 @@
     flex-wrap: nowrap;
 }
 
+.property-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+  }
+  
+  .property-card {
+    width: calc(25% - 20px); /* Adjust the width as needed */
+    margin: 10px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  
+  .grid-item {
+    padding: 20px;
+  }
+  
+  .properties-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .properties-container > * {
+    width: calc(50% - 20px); /* Adjust the width as needed */
+    margin: 10px;
+  }
+  
+
+
 .properties-container .search-bar .button{
     border-radius: 30px;
     font-size: 12px;
