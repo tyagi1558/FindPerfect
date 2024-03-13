@@ -12,23 +12,26 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
       country: propertyDetails?.country,
       city: propertyDetails?.city,
       address: propertyDetails?.address,
+      type: propertyDetails?.type
     },
 
     validate: {
       country: (value) => validateString(value),
       city: (value) => validateString(value),
       address: (value) => validateString(value),
+      type: (value) => validateString(value),
+
     },
   });
 
 
-  const { country, city, address } = form.values;
+  const { country, city, address , type} = form.values;
 
 
   const handleSubmit = ()=> {
     const {hasErrors} = form.validate();
     if(!hasErrors) {
-        setPropertyDetails((prev)=> ({...prev, city, address, country}))
+        setPropertyDetails((prev)=> ({...prev, city, address, country,type}))
         nextStep()
     }
   }
@@ -74,6 +77,12 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
             withAsterisk
             label="Address"
             {...form.getInputProps("address", { type: "input" })}
+          />
+          <TextInput
+            w={"100%"}
+            withAsterisk
+            label="Sale/Rent/Plot/feature project"
+            {...form.getInputProps("type", { type: "input" })}
           />
         </div>
 
