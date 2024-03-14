@@ -8,40 +8,6 @@
     flex-wrap: nowrap;
 }
 
-.property-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-  }
-  
-  .property-card {
-    width: calc(25% - 20px); /* Adjust the width as needed */
-    margin: 10px;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-  }
-  
-  .grid-item {
-    padding: 20px;
-  }
-  
-  .properties-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .properties-container > * {
-    width: calc(50% - 20px); /* Adjust the width as needed */
-    margin: 10px;
-  }
-  
-
-
 .properties-container .search-bar .button{
     border-radius: 30px;
     font-size: 12px;
@@ -50,4 +16,70 @@
 
 .properties-container .search-bar input{
     width: 70%;
+}
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust minmax value as needed */
+  gap: 40px;
+}
+
+
+
+/* Styles for grid items */
+.grid-item {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%; /* Ensure grid items occupy full width */
+
+}
+
+/* Styles for section headers */
+.flexColStart.r-head {
+  margin-bottom: 20px;
+}
+
+.flexColStart.r-head .primaryText {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styles for property sections */
+.properties-section {
+  margin-bottom: 40px;
+}
+
+.properties-section .properties-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.properties-section .property-card {
+  width: calc(25% - 20px);
+  margin: 10px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .grid-item {
+      padding: 15px;
+  }
+
+  .flexColStart.r-head .primaryText {
+      font-size: 18px;
+  }
+
+  .properties-section .property-card {
+      width: calc(50% - 20px);
+  }
+}
+
+.properties-section .swiper-container {
+  margin-left: 0;
 }

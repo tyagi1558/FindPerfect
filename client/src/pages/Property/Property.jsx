@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
-import { getProperty, removeBooking } from "../../utils/api";
+import { getProperty } from "../../utils/api";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart } from "react-icons/ai";
 import "./Property.css";
@@ -118,7 +118,7 @@ const Property = () => {
             <div className="flexStart head">
               <span className="primaryText">{data?.title} for {data?.type}</span>
               <span className="orangeText" style={{ fontSize: "1.5rem" }}>
-              ₹ {data?.price} /Only
+              ₹ {data?.price} 
               </span>
             </div>
 
@@ -131,7 +131,7 @@ const Property = () => {
               </div>
 
               <div className="flexStart facility">
-  <span>Area: {data?.facilities?.area} sq.ft</span>
+  <span>Area: {data?.area} sq.ft</span>
 </div>
 
 

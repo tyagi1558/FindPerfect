@@ -16,7 +16,6 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
       title: (value) => validateString(value),
       description: (value) => validateString(value),
       price: (value) =>validateString(value),
-          
       area: (value) => validateString(value),
     },
   });
@@ -49,7 +48,7 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
           withAsterisk
           {...form.getInputProps("description")}
         />
-        <NumberInput
+        <TextInput
           withAsterisk
           label="Price"
           placeholder="1000"

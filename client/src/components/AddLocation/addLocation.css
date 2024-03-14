@@ -1,0 +1,46 @@
+/* Styles for the welcome message */
+.welcome-message {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styles for the dropdown */
+  .property-type-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+  }
+  
+  .property-type-dropdown:focus {
+    outline: none;
+    border-color: #4066ff; /* Change border color on focus */
+  }
+  
+  /* Styles for the dropdown options */
+  .property-type-dropdown option {
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+  }
+  
+  /* Styles for the dropdown label */
+  .property-type-label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the dropdown container */
+  .dropdown-container {
+    margin-bottom: 20px;
+  }
+  

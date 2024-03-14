@@ -45,6 +45,9 @@ const Properties = () => {
   // Slider settings
   const sliderSettings = {
     navigation: true,
+    slidesPerView: 4,
+    spaceBetween: 20,
+    loop: true,
   };
 
   return (
@@ -72,11 +75,11 @@ const Properties = () => {
 
        {/* Display other sections only if no search filter is applied */}
 {!filter && (
-  <div className="grid-container">
+    <div className="grid-container">
     {/* Future Projects Section */}
-    <div className="grid-item">
-      <div className="flexColStart r-head">
-        <span className="primaryText">Future Projects</span>
+    <div className="grid-item properties-section">
+    <div className="flexColStart r-head">
+    <span className="primaryText">Future Projects</span>
       </div>
       <div className="properties-container">
         {data
@@ -121,11 +124,11 @@ const Properties = () => {
     {/* Ploat Properties Section */}
     <div className="grid-item">
       <div className="flexColStart r-head">
-        <span className="primaryText">Popular Residencies for Ploat</span>
+        <span className="primaryText">Popular Residencies for Plot</span>
       </div>
       <div className="properties-container">
         {data
-          .filter(property => property.type.toLowerCase() === "ploat")
+          .filter(property => property.type.toLowerCase() === "plot")
           .slice(0, 4)
           .map((card, i) => (
             <PropertyCard key={i} card={card} />

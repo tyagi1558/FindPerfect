@@ -18,7 +18,6 @@ const Facilities = ({
     initialValues: {
       bedrooms: propertyDetails.facilities.bedrooms,
       parkings: propertyDetails.facilities.parkings,
-      area: propertyDetails.facilities.area,
       bathrooms: propertyDetails.facilities.bathrooms,
     },
     validate: {
@@ -102,11 +101,7 @@ const Facilities = ({
           min={0}
           {...form.getInputProps("bathrooms")}
         />
-         <NumberInput
-          label="Carpet Area"
-          // min={0}
-          {...form.getInputProps("area")}
-        />
+        
         <Group position="center" mt="xl">
           <Button variant="default" onClick={prevStep}>
             Back

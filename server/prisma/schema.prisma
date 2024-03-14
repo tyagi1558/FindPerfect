@@ -32,7 +32,8 @@ model Residency {
     id          String   @id @default(auto()) @map("_id") @db.ObjectId
     title       String
     description String
-    price       Int
+    price       String
+    area        String
     address     String
     city        String
     type        String
