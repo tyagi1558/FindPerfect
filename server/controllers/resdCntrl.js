@@ -32,6 +32,7 @@ export const createResidency = asyncHandler(async (req, res) => {
         images,
       },
     });
+    console.log("just", req.body.data)
 
     res.send({ message: "Residency created successfully", residency });
   } catch (err) {
