@@ -14,11 +14,11 @@ const AddPropertyModal = ({ opened, setOpened }) => {
     title: "",
     description: "",
     price: 0,
+    type:"",
     country: "",
     city: "",
     address: "",
     area:"",
-    image: [], 
     facilities: {
       bedrooms: 0,
       parkings: 0,

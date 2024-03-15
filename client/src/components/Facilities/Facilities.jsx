@@ -7,6 +7,8 @@ import useProperties from "../../hooks/useProperties.jsx";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import { createResidency } from "../../utils/api";
+import { validateString } from "../../utils/common";
+
 const Facilities = ({
   prevStep,
   propertyDetails,
@@ -18,13 +20,23 @@ const Facilities = ({
     initialValues: {
       bedrooms: propertyDetails.facilities.bedrooms,
       parkings: propertyDetails.facilities.parkings,
-      area: propertyDetails.facilities.area,
       bathrooms: propertyDetails.facilities.bathrooms,
     },
     validate: {
-      bedrooms: (value) => (value < 1 ? "Must have atleast one room" : null),
+
+      // Custom validation for bedrooms, parkings, bathrooms based on property type
+      bedrooms: (value) =>
+        propertyDetails.type === "rent" || propertyDetails.type === "sale"
+          ? validateString(value)
+          : undefined,
+      parkings: (value) =>
+        propertyDetails.type === "rent" || propertyDetails.type === "sale"
+          ? validateString(value)
+          : undefined,
       bathrooms: (value) =>
-        value < 1 ? "Must have atleast one bathroom" : null,
+        propertyDetails.type === "rent" || propertyDetails.type === "sale"
+          ? validateString(value)
+          : undefined,
     },
   });
 
@@ -48,34 +60,39 @@ const Facilities = ({
   } = useContext(UserDetailContext);
   const { refetch: refetchProperties } = useProperties();
 
-  const {mutate, isLoading} = useMutation({
-    mutationFn: ()=> createResidency({
-        ...propertyDetails, facilities: {bedrooms, parkings , bathrooms},
-    }, token),
-    onError: ({ response }) => toast.error(response.data.message, {position: "bottom-right"}),
-    onSettled: ()=> {
-      toast.success("Added Successfully", {position: "bottom-right"});
+  const { mutate, isLoading } = useMutation({
+    mutationFn: () =>
+      createResidency(
+        {
+          ...propertyDetails,
+          facilities: { bedrooms, parkings, bathrooms },
+        },
+        token
+      ),
+    onError: ({ response }) =>
+      toast.error(response.data.message, { position: "bottom-right" }),
+    onSettled: () => {
+      toast.success("Added Successfully", { position: "bottom-right" });
       setPropertyDetails({
         title: "",
         description: "",
         price: 0,
+        type:"",
         country: "",
         city: "",
         address: "",
-        image: [], 
-        area:"",
+        area: "",
         facilities: {
           bedrooms: 0,
           parkings: 0,
           bathrooms: 0,
         },
-      })
-      setOpened(false)
-      setActiveStep(0)
-      refetchProperties()
-    }
-
-  })
+      });
+      setOpened(false);
+      setActiveStep(0);
+      refetchProperties();
+    },
+  });
 
   return (
     <Box maw="30%" mx="auto" my="sm">
@@ -102,7 +119,7 @@ const Facilities = ({
           min={0}
           {...form.getInputProps("bathrooms")}
         />
-         <NumberInput
+        <NumberInput
           label="Carpet Area"
           // min={0}
           {...form.getInputProps("area")}

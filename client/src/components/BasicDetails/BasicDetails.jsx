@@ -49,11 +49,10 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
           withAsterisk
           {...form.getInputProps("description")}
         />
-        <NumberInput
+        <TextInput
           withAsterisk
           label="Price"
           placeholder="1000"
-          min={0}
           {...form.getInputProps("price")}
         />
         <TextInput

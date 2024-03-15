@@ -8,9 +8,9 @@ export const createResidency = asyncHandler(async (req, res) => {
     description,
     price,
     address,
+    area,
     country,
     city,
-    area,
     type,
     facilities,
     images,
@@ -24,11 +24,12 @@ export const createResidency = asyncHandler(async (req, res) => {
         description,
         price,
         address,
+        area,
         country,
         city,
-        area,
         type,
-        facilities,
+        // Check if facilities is null, if not include it, otherwise exclude it
+        ...(facilities !== null && { facilities }),
         images,
       },
     });
@@ -37,7 +38,7 @@ export const createResidency = asyncHandler(async (req, res) => {
     res.send({ message: "Residency created successfully", residency });
   } catch (err) {
     if (err.code === "P2002") {
-      throw new Error("A residency with address already there");
+      throw new Error("A residency with the same address already exists");
     }
     throw new Error(err.message);
   }

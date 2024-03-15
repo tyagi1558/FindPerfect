@@ -131,7 +131,7 @@ const Property = () => {
               </div>
 
               <div className="flexStart facility">
-  <span>Area: {data?.facilities?.area} sq.ft</span>
+  <span>Area: {data?.area} </span>
 </div>
 
 
