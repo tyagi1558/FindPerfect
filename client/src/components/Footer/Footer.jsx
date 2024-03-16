@@ -1,30 +1,40 @@
-import React from "react";
-import "./Footer.css";
+import React from 'react';
+import './Footer.css'
+import { AiFillFacebook } from 'react-icons/ai';
+import { AiFillTwitterSquare } from 'react-icons/ai';
+import { AiFillInstagram } from 'react-icons/ai';
+import { AiFillLinkedin } from 'react-icons/ai';
 const Footer = () => {
   return (
-    <div className="f-wrapper">
-      <div className="paddings innerWidth flexCenter f-container">
-        {/* left side */}
-        <div className="flexColStart f-left">
-          <img src="./logo2.png" alt="" width={120} />
-          <span className="secondaryText">
-            Our vision is to make all people <br />
-            the best place to live for them.
-          </span>
-        </div>
-
-        <div className="flexColStart f-right">
-          <span className="primaryText">Information</span>
-          <span className="secondaryText">145 New York, FL 5467, USA</span>
-          <div className="flexCenter f-menu">
-            <span>Property</span>
-            <span>Services</span>
-            <span>Product</span>
-            <span>About Us</span>
+    <footer className="footer bg-dark text-light py-5">
+     <div class="footer">
+  <div class="footer-links">
+    <div class="footer-section">
+            <h5>About Us</h5>
+            <p>Our vision is to make all people
+the best place to live for them..</p>
+          </div>
+          <div class="footer-section">
+            <h5>Quick Links</h5>
+            <ul className="list-unstyled">
+              <li><a href="/">Home</a></li>
+              <li><a href="/properties">Properties</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h5>Contact Us</h5>
+            <address>
+              Sector 39<br />
+              Jharsa, Gurgaon, Haryana<br />
+               
+            </address>
           </div>
         </div>
+        <hr />
+    
       </div>
-    </div>
+    </footer>
   );
 };
 

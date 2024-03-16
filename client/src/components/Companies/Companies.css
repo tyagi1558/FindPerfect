@@ -1,7 +1,14 @@
-.c-container{
-    justify-content: space-around;
-    gap: 1rem;
-}
-.c-container>img{
-    width: 9rem;
-}
+/* Companies.css */
+
+.c-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .c-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  

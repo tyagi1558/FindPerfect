@@ -31,6 +31,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
   return (
     <Modal
       opened={opened}
+      onClose={() => setOpened(false)} // Close the modal when clicking outside
       centered
     >
       <div className="booking-modal">

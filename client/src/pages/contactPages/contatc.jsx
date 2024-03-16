@@ -1,15 +1,32 @@
 import { useRef, useState } from "react";
 import "./contact.css"; // Import your CSS file
+import React from "react";
+import { Modal, Button, TextInput } from "@mantine/core";
+import { useMutation } from "react-query";
+import { ContactDeltails } from "../../utils/api.js";
+import { toast } from "react-toastify";
 
 const Contact = () => {
-  const form = useRef();
   const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [subject, setSubject] = useState("");
+  const [email, setMail] = useState(null);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setMessage('This form is only for demonstration purposes. Email sending functionality has been disabled.');
-    e.target.reset();
+  const handleBookingSuccess = () => {
+    toast.success("We will get in touch with you as soon as possible!", {
+      position: "bottom-right",
+    });
   };
+
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: () => ContactDeltails(name, phone, email,subject, message),
+    onSuccess: () => handleBookingSuccess(),
+    onError: (error) => toast.error(error.message),
+  });
+
 
   return (
     <div className="wrapper1">
@@ -27,61 +44,64 @@ const Contact = () => {
           </p>
         </div>
         <div className="mx-auto mt-4 lg:w-6/12 lg:flex-1 lg:mt-0">
-          <form ref={form} onSubmit={sendEmail} className="contact-form bg-gray-50 p-4 rounded-lg space-y-2">
-            <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">Your name</label>
-              <input 
-                type="text" 
-                name="user_name"
-                placeholder="John Doe" 
-                className="input-field block w-full rounded-md border-0 outline-0 py-2.5 px-4 text-gray-900 appearance-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                required 
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">Your email</label>
-              <input 
-                type="email" 
-                name="user_email" 
-                placeholder="name@example.com" 
-                className="input-field block w-full rounded-md border-0 outline-0 py-2.5 px-4 text-gray-900 appearance-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                required 
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">Subject (optional)</label>
-              <input 
-                type="text" 
-                name="subject" 
-                placeholder="Let us know how we can help you" 
-                className="input-field block w-full rounded-md border-0 outline-0 py-2.5 px-4 text-gray-900 appearance-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="block text-sm font-medium leading-6 text-gray-900">Your message</label>
-              <textarea 
-                name="message"
-                rows="6" 
-                required
-                className="input-field block w-full rounded-md border-0 outline-0 py-2.5 px-4 text-gray-900 appearance-none shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-indigo-600 sm:text-sm sm:leading-6" 
-                placeholder="Leave a comment...">
-              </textarea>
-            </div>
-            <button 
-              type="submit" 
-              className="submit-button flex justify-center items-center gap-2 rounded-md bg-myblue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Send message
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8l-19 8Z"/>
-              </svg>
-            </button>
-          </form>
-          <p className={message === 'Message sent successfully' ? 'text-green-500 mt-4' : 'text-red-500 mt-4'}>
-            {message}
-          </p>
-        </div>
-      </div>
+  <div className="input-container">
+    <div className="input-label">Name</div>
+    <TextInput
+      className="input-field"
+      placeholder="John Doe"
+      value={name}
+      onChange={(event) => setName(event.target.value)}
+    />
+  </div>
+  <div className="input-container">
+    <div className="input-label">Phone</div>
+    <TextInput
+      className="input-field"
+      placeholder="123-456-7890"
+      value={phone}
+      onChange={(event) => setPhone(event.target.value)}
+    />
+  </div>
+  <div className="input-container">
+    <div className="input-label">Mail</div>
+    <TextInput
+      className="input-field"
+      placeholder="name@example.com"
+      value={email}
+      onChange={(event) => setMail(event.target.value)}
+    />
+  </div>
+  <div className="input-container">
+    <div className="input-label">Subject</div>
+    <TextInput
+      className="input-field"
+      placeholder="Let us know how we can help you"
+      value={subject}
+      onChange={(event) => setSubject(event.target.value)}
+    />
+  </div>
+  <div className="input-container">
+    <div className="input-label">Message</div>
+    <TextInput
+      className="input-field"
+      placeholder="Leave a comment..."
+      value={message}
+      onChange={(event) => setMessage(event.target.value)}
+    />
+  </div>
+  <button 
+    disabled={!name || !phone || !subject || isLoading}
+    onClick={() => mutate()}
+    className="submit-button flex justify-center items-center gap-2 rounded-md bg-myblue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+  >
+    Send message
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8l-19 8Z"/>
+    </svg>
+  </button>
+ 
+</div>
+</div>
       
     </section>
     </div>
