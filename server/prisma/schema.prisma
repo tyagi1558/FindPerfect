@@ -24,6 +24,9 @@ model BookVisit {
   date     String
   phone    String
   city     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   propertyId String
 }
 
@@ -44,4 +47,16 @@ model Residency {
     updatedAt   DateTime @updatedAt
 
     @@unique(fields: [address])
+}
+
+model ContactDetails {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String
+  message String
+  phone   String  
+  subject String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
 }

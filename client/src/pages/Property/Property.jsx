@@ -7,7 +7,7 @@ import { AiFillHeart } from "react-icons/ai";
 import "./Property.css";
 
 import { FaShower } from "react-icons/fa";
-import { AiTwotoneCar } from "react-icons/ai";
+import { AiTwotoneCar,AiFillBoxPlot } from "react-icons/ai";
 import { MdLocationPin, MdMeetingRoom } from "react-icons/md";
 import Map from "../../components/Map/Map";
 import useAuthCheck from "../../hooks/useAuthCheck";
@@ -104,7 +104,7 @@ const Property = () => {
         {/* image */}
         
  <div className="property-slider">
-  <img src={data?.images[currentIndex]} alt="property image" />
+  <img  src={data?.images[currentIndex]} alt="property image" />
   <button className="prev" onClick={prevSlide}>&#10094;</button>
   <button className="next" onClick={nextSlide}>&#10095;</button>
   <div className="overlay"></div>
@@ -118,7 +118,7 @@ const Property = () => {
             <div className="flexStart head">
               <span className="primaryText">{data?.title} for {data?.type}</span>
               <span className="orangeText" style={{ fontSize: "1.5rem" }}>
-              ₹ {data?.price} /Only
+              ₹ {data?.price}
               </span>
             </div>
 
@@ -131,6 +131,8 @@ const Property = () => {
               </div>
 
               <div className="flexStart facility">
+                <AiFillBoxPlot size={20} color="#1F3E72" />
+
   <span>Area: {data?.area} </span>
 </div>
 
@@ -192,11 +194,7 @@ const Property = () => {
                   Book your visit
                 </button>
                 {/* Render the BookingFormModal */}
-                <BookingModal
-                  opened={showFormModal}
-                  onClose={() => setShowFormModal(false)}
-                  onSubmit={handleSubmitBookingForm}
-                />
+               
               </>
             )}
 

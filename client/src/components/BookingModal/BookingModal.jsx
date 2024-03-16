@@ -15,7 +15,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
     toast.success("You have booked your visit", {
       position: "bottom-right",
     });
-    // Implement the necessary logic for handling successful booking
+    setOpened(false); // Close the modal upon successful booking
   };
 
   const handleCancel = () => {
